@@ -1,0 +1,119 @@
+/* Theme Styles */
+/* Light Mode (Default) */
+:root {
+  --primary-bg: #FFFFFF;
+  --secondary-bg: #F5F5F7;
+  --tertiary-bg: #E9E9EB;
+  --primary-text: #1D1D1F;
+  --secondary-text: #6E6E73;
+  --accent-color: #2563EB;
+  --success-color: #34C759;
+  --warning-color: #FF9500;
+  --error-color: #FF3B30;
+  --border-color: #D1D1D6;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Dark Mode */
+.theme-dark {
+  --primary-bg: #1C1C1E;
+  --secondary-bg: #2C2C2E;
+  --tertiary-bg: #3A3A3C;
+  --primary-text: #FFFFFF;
+  --secondary-text: #98989D;
+  --accent-color: #3B82F6;
+  --success-color: #30D158;
+  --warning-color: #FF9F0A;
+  --error-color: #FF453A;
+  --border-color: #38383A;
+  --shadow-color: rgba(0, 0, 0, 0.3);
+}
+
+/* System Theme Detection */
+@media (prefers-color-scheme: dark) {
+  .theme-system {
+    --primary-bg: #1C1C1E;
+    --secondary-bg: #2C2C2E;
+    --tertiary-bg: #3A3A3C;
+    --primary-text: #FFFFFF;
+    --secondary-text: #98989D;
+    --accent-color: #3B82F6;
+    --success-color: #30D158;
+    --warning-color: #FF9F0A;
+    --error-color: #FF453A;
+    --border-color: #38383A;
+    --shadow-color: rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* Dark Mode Specific Adjustments */
+.theme-dark .traffic-light.close,
+.theme-system.dark-mode .traffic-light.close {
+  background-color: #FF5F57;
+  opacity: 0.8;
+}
+
+.theme-dark .traffic-light.minimize,
+.theme-system.dark-mode .traffic-light.minimize {
+  background-color: #FEBC2E;
+  opacity: 0.8;
+}
+
+.theme-dark .traffic-light.maximize,
+.theme-system.dark-mode .traffic-light.maximize {
+  background-color: #28C840;
+  opacity: 0.8;
+}
+
+.theme-dark .card,
+.theme-system.dark-mode .card {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* High Contrast Mode */
+.high-contrast {
+  --primary-text: #000000;
+  --secondary-text: #333333;
+  --accent-color: #0000FF;
+  --border-color: #000000;
+}
+
+.high-contrast.theme-dark {
+  --primary-text: #FFFFFF;
+  --secondary-text: #DDDDDD;
+  --accent-color: #00AAFF;
+  --border-color: #FFFFFF;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* Vibrancy Effects (macOS) */
+.vibrancy-effect {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.sidebar.vibrancy-effect {
+  background-color: rgba(245, 245, 247, 0.8);
+}
+
+.theme-dark .sidebar.vibrancy-effect,
+.theme-system.dark-mode .sidebar.vibrancy-effect {
+  background-color: rgba(44, 44, 46, 0.8);
+}
+
+.titlebar.vibrancy-effect {
+  background-color: rgba(245, 245, 247, 0.8);
+}
+
+.theme-dark .titlebar.vibrancy-effect,
+.theme-system.dark-mode .titlebar.vibrancy-effect {
+  background-color: rgba(44, 44, 46, 0.8);
+}

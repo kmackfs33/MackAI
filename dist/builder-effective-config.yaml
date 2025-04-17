@@ -1,0 +1,30 @@
+directories:
+  output: dist
+  buildResources: build
+appId: com.mackteam.mackai
+productName: Mack AI
+mac:
+  category: public.app-category.productivity
+  darkModeSupport: true
+  hardenedRuntime: true
+  gatekeeperAssess: false
+  entitlements: build/entitlements.mac.plist
+  entitlementsInherit: build/entitlements.mac.plist
+  target:
+    - dmg
+  icon: build/icon.icns
+dmg:
+  contents:
+    - x: 130
+      'y': 220
+    - x: 410
+      'y': 220
+      type: link
+      path: /Applications
+  window:
+    width: 540
+    height: 380
+  background: build/background.png
+  icon: build/icon.icns
+files: []
+electronVersion: 28.3.3

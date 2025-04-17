@@ -1,0 +1,134 @@
+{
+  "name": "mack-ai",
+  "version": "1.0.0",
+  "description": "Mack AI - Intelligent Cross-Platform Assistant",
+  "main": "main.js",
+  "scripts": {
+    "start": "NODE_ENV=development electron .",
+    "dev": "npm run lint && npm run start",
+    "build": "electron-builder",
+    "build:mac": "electron-builder --mac",
+    "build:win": "electron-builder --win",
+    "build:linux": "electron-builder --linux",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder --publish=never",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "postinstall": "electron-builder install-app-deps",
+    "release": "electron-builder --publish=always"
+  },
+  "keywords": [
+    "AI",
+    "productivity",
+    "assistant",
+    "cross-platform"
+  ],
+  "author": {
+    "name": "Mack AI Team",
+    "email": "support@mack.ai",
+    "url": "https://mack.ai"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mack-ai/desktop-app.git"
+  },
+  "devDependencies": {
+    "electron": "^28.0.0",
+    "electron-builder": "^24.6.4",
+    "electron-notarize": "^1.2.3",
+    "eslint": "^8.56.0",
+    "eslint-config-airbnb-base": "^16.1.0",
+    "eslint-plugin-import": "^2.29.1"
+  },
+  "dependencies": {
+    "electron-updater": "^6.1.7",
+    "electron-log": "^5.0.1"
+  },
+  "build": {
+    "appId": "com.mackai.desktop",
+    "productName": "Mack AI",
+    "copyright": "Copyright © 2024 Mack AI",
+    "asar": true,
+    "asarUnpack": [
+      "**/node_modules/{keytar,@serialport}/**"
+    ],
+    "extraMetadata": {
+      "main": "main.js"
+    },
+    "mac": {
+      "category": "public.app-category.developer-tools",
+      "darkModeSupport": true,
+      "hardenedRuntime": true,
+      "gatekeeperAssess": false,
+      "entitlements": "build/entitlements.mac.plist",
+      "entitlementsInherit": "build/entitlements.mac.plist",
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        }
+      ],
+      "icon": "build/icon.icns",
+      "notarize": {
+        "teamId": "YOUR_TEAM_ID",
+        "appleId": "YOUR_APPLE_ID",
+        "appleIdPassword": "@keychain:AC_PASSWORD"
+      }
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64",
+            "ia32"
+          ]
+        }
+      ],
+      "icon": "build/icon.ico",
+      "publisherName": "Mack AI Team",
+      "rfc3161TimeStampServer": "http://timestamp.digicert.com"
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "snap"
+      ],
+      "category": "Development",
+      "icon": "build/icon.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": true,
+      "allowToChangeInstallationDirectory": true
+    },
+    "publish": {
+      "provider": "github",
+      "owner": "mack-ai",
+      "repo": "desktop-app"
+    },
+    "files": [
+      "**/*",
+      "!**/__tests__/**",
+      "!**/*.map",
+      "!*.log",
+      "!*.md"
+    ],
+    "directories": {
+      "buildResources": "build",
+      "output": "dist/${version}",
+      "app": "."
+    },
+    "extraResources": [
+      {
+        "from": "src/assets",
+        "to": "assets",
+        "filter": ["**/*"]
+      }
+    ],
+    "afterSign": "scripts/notarize.js"
+  }
+}
